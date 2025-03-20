@@ -1,0 +1,82 @@
+.navbar__main{
+    border-bottom: 1px solid #E6E8EA;
+}
+.navbar__leftbar{
+    display: flex;
+}
+.navbar__logo{
+    width: 43px;
+    margin: 8px 10px 8px 16px;
+    filter: brightness(-1);
+}
+.navbar__search{
+    display: flex;
+    height: 40px;
+    width: 220px;
+    border-radius: 25px;
+    border: 0px;
+    background-color: #EFF2F5;
+    font-size: 16px;
+    margin-top: 8px;
+    input:focus {outline:none;}
+    
+}
+.navbar__search_icon{
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.navbar__search_input{
+    background-color: transparent;
+    border: none;
+    width: 180px;
+    border-radius: 25px;
+    text-align: left;
+    font-size: 16px;
+    padding-left: 4px;
+}
+.navbar__container{
+    display: flex;
+    margin-top: 10px;
+    max-width: 590px;
+    margin-left: 145px;
+}
+.navbar__tabs{
+    width: 90px;
+    height: 45px;
+    
+}
+.navbar__tabs.active {
+    border-bottom: 3px solid #1B74E4;
+}
+.navbar__righttab{
+    display: flex;
+    margin-left: 170px;
+}
+.navbar__rightimg{
+    margin: 9px 3px 0px 3px; 
+}
+.navbar__img{
+    width: 45px;
+    height: 42px;
+    margin: 8px 3px 0px 3px; 
+}
+.sign_out{
+    margin-left: -110px;
+    
+}
+.dropdown_menu{
+    
+}
+.editusername{
+
+}
+.editusertext{
+    width: 340px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid #DADDE1;
+    margin: 15px;
+    font-size: 18px;
+    padding: 0px 15px;
+}
