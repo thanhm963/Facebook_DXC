@@ -27,19 +27,21 @@ public class PostController {
     
     @PostMapping("/save")
     public ArrayList<Post> submitPost(@RequestBody Post body){
-        postService.submitPosttoDB(body);
-        return new ArrayList<Post>();
+        ArrayList<Post> result = postService.submitPosttoDB(body);
+        return result;
     }
 
     @GetMapping("/getPost")
-    public ArrayList<Post> retrieveAllPost(@RequestParam String param) {
+    public ArrayList<Post> retrieveAllPost() {
+        ArrayList<Post> result = postService.retrivePosttoDB();
         return new ArrayList<Post>();
     }
 
     @DeleteMapping("/delete")
     public ArrayList<Post> deleteParticularPost(@PathVariable("postID") UUID postID )
     {
-        return new ArrayList<Post>();
+        ArrayList<Post> result = postService.deletePosttoDB(postID);
+        return result;
     }
     
 }

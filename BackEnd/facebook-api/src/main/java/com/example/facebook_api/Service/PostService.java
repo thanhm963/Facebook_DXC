@@ -3,26 +3,35 @@ package com.example.facebook_api.Service;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.facebook_api.Entity.Post;
+import com.example.facebook_api.Repository.PostRepo;
 
 @Service
 public class PostService {
     
+    @Autowired
+    PostRepo postRepo;
     
     public ArrayList<Post> submitPosttoDB(Post postData)
-    {
-        return new ArrayList<Post>();
+    {   
+        postRepo.save(postData);
+        ArrayList<Post> result = retrivePosttoDB();
+        return result;
     }
 
-    public ArrayList<Post> retrivePosttoDB(Post postData)
+    public ArrayList<Post> retrivePosttoDB()
     {
-        return new ArrayList<Post>();
+        ArrayList<Post> result = postRepo.findAll();
+        return result;
     }
 
     public ArrayList<Post> deletePosttoDB(UUID postID)
-    {
-        return new ArrayList<Post>();
+    {   
+        postRepo.deleteById(postID);
+        ArrayList<Post> result = retrivePosttoDB();
+        return result;
     }
 }
