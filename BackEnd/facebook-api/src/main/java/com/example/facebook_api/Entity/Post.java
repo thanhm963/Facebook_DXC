@@ -1,6 +1,7 @@
 package com.example.facebook_api.Entity;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;

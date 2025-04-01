@@ -34,7 +34,7 @@ public class PostController {
     @GetMapping("/getPost")
     public ArrayList<Post> retrieveAllPost() {
         ArrayList<Post> result = postService.retrivePosttoDB();
-        return new ArrayList<Post>();
+        return result;
     }
 
     @DeleteMapping("/delete")

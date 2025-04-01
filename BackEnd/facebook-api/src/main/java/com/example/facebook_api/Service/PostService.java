@@ -1,5 +1,7 @@
 package com.example.facebook_api.Service;
 
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -17,6 +19,13 @@ public class PostService {
     
     public ArrayList<Post> submitPosttoDB(Post postData)
     {   
+        Date date = new Date();
+        long time = date.getTime();
+        Timestamp dateTime = new Timestamp(time);
+
+        postData.setPostID(UUID.randomUUID());
+        postData.setLikes(0);
+        postData.setDateTime(dateTime);
         postRepo.save(postData);
         ArrayList<Post> result = retrivePosttoDB();
         return result;
