@@ -37,7 +37,7 @@ public class PostController {
         return result;
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{postID}")
     public ArrayList<Post> deleteParticularPost(@PathVariable("postID") UUID postID )
     {
         ArrayList<Post> result = postService.deletePosttoDB(postID);
