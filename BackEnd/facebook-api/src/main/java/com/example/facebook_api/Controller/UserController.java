@@ -31,11 +31,11 @@ public class UserController {
     
     @GetMapping("/getUserDetails")
     public ArrayList<User> getAllUserDetails() {
-        return new ArrayList<User>();
+        return userService.retrieveAllUserDetails();
     }
     
     @GetMapping("/getAllUsers/{userID}")
     public User getUserDetail(@PathVariable("userID") UUID userID){
-        return new User();
+        return userService.getUserData(userID);
     }
 }

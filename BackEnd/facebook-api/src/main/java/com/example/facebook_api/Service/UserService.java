@@ -18,15 +18,22 @@ public class UserService {
 
     @PostMapping("/save")
     public User submitMetaDataOfUser(User user){
+		Date date = new Date();
+		long time = date.getTime();
+		Timestamp dateTime=new Timestamp(time);
+		
         user.setUserID(UUID.randomUUID());
-        return new User();
+		user.setActive(true);
+		user.setJoiningDate(joiningDate);
+		
+        return userRepository.save(user);
     }
 
     public ArrayList<User> retrieveAllUserDetails(){
-        return new ArrayList<User>();
+        return userRepository.findAll();
     }
 
     public User getUserData(UUID userID) {
-        return new User();
+        return userRepository.findAllByUserId();
     }
 }
