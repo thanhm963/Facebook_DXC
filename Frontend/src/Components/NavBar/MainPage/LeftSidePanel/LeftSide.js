@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import "./LeftSide.css";
 import ImageLayout from '../ImageLayout';
-import covid from "../../../../images/covid.png";
-import groups from "../../../../images/groups.png";
-import memories from "../../../../images/memories.png";
-import messengerKids from "../../../../images/messengerkids.png";
-import ads from "../../../../images/ads.png";
-import adsmanager from "../../../../images/admanager.png";
-import blood from "../../../../images/blood.png";
-import business from "../../../../images/business.png";
+import covid from "../../../../images/images/covid.png";
+import groups from "../../../../images/images/groups.png";
+import memories from "../../../../images/images/memories.png";
+import messengerKids from "../../../../images/images/messengerkids.png";
+import ads from "../../../../images/images/ads.png";
+import adsmanager from "../../../../images/images/admanager.png";
+import blood from "../../../../images/images/blood.png";
+import business from "../../../../images/images/business.png";
 
 class LeftSide extends Component {
     constructor(props) {

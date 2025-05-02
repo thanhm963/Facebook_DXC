@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import "./PostContainer.css";
-import { Paper, Avatar } from '@material-ui/core';
-import post from "../../../../images/post.jpeg";
-import like from "../../../../images/like.png";
-import likebutton from "../../../../images/likebutton.png";
-import commentbutton from "../../../../images/comment.png";
-import sharebutton from "../../../../images/share.png";
-import {getImage} from "../../../../GetImage.js";
+import './PostContainer.css';
+import { Paper, Avatar } from '@mui/material'; // Updated from @material-ui/core to @mui/material
+import post from '../../../../images/images/post.jpeg';
+import like from '../../../../images/images/like.png';
+import likebutton from '../../../../images/images/likebutton.png';
+import commentbutton from '../../../../images/images/comment.png';
+import sharebutton from '../../../../images/images/share.png';
+import { getImage } from '../../../../GetImage.js';
 
 class Post extends Component {
     constructor(props) {

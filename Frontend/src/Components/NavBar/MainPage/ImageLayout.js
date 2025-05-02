@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Avatar } from '@material-ui/core';
+import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import "./Mainpage.css";
-import Badge from '@material-ui/core/Badge';
-import {getImage} from "../../../GetImage.js";
+import { getImage } from "../../../GetImage.js";
+
 
 class ImageLayout extends Component {
     constructor(props) {

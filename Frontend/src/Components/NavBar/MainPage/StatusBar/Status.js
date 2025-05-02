@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import "./StatusBar.css";
-import { Paper } from '@material-ui/core';
-import status1 from "../../../../images/pic2.jpeg";
-import uploadIcon from "../../../../images/upload.png";
-import {firebase} from "../../../../firebase";
+import { Paper } from '@mui/material';
+import status from "../../../../images/images/pic2.jpeg";
+import uploadIcon from "../../../../images/images/upload.png";
+import {app} from "../../../../firebase";
 
 class Status extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Status extends Component {
             return;
             
         const thisContext=this;
-        var uploadTask = firebase.storage().ref("status").child(image.name).put(image);
+        var uploadTask = app.storage().ref("status").child(image.name).put(image);
         uploadTask.on(
           "state_changed",
           function (snapshot) {

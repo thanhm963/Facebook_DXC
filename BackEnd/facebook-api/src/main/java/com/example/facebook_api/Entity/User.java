@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table
+@Table("User")
 public class User {
     
     @PrimaryKey
@@ -28,6 +28,38 @@ public class User {
         this.active = active;
         this.joiningDate = joiningDate;
     }
+    public UUID getUserID() {
+        return userID;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public String getUserImage() {
+        return userImage;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public Timestamp getJoiningDate() {
+        return joiningDate;
+    }
+    public void setUserID(UUID userID) {
+        this.userID = userID;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    public void setJoiningDate(Timestamp joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+    
+
 
     
 }

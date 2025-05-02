@@ -1,103 +1,105 @@
 import React, { Component } from 'react';
 import "./LoginHome.css";
-import { Alert, Grid } from '@mui/material';
-import { Avatar, Paper } from '@mui/material';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reload} from "firebase/auth";
-import app from "../../firebase";
-import facebooksignup from "../../images/images/facebooksignup";
-import Post from '../MainPage/PostContainer/Post';
-
-
-
-
+import { Grid, Paper, Avatar } from '@mui/material';
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 class LoginHome extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             signIN : true,
 
-            // sign up
-            signup_name : null,
-            signup_email : null, 
-            signup_password : null,
+            //signIN
+            signin_email:null,
+            signin_password:null,
 
-            // sign in
+            //signup
+            signup_name: null,
+            signup_email:null,
+            signup_password:null
 
-            signin_email: null,
-            signin_password: null
-        }
-    }   
+
+         }
+    }
     switchPanel=()=>{
         if(this.state.signIN)
-            this.setState({signIN : false});
+            this.setState({signIN : false });
         else
-            this.setState({signIN : true});
+            this.setState({signIN : true });
     }
+
+    getImage=()=>{
+        return "dp"+Math.floor(Math.random() * 10);
+    }
+
     signUP=()=>{
-        const auth = getAuth(app);
-        createUserWithEmailAndPassword(auth, this.state.signup_email, this.state.signup_password)
+
+        createUserWithEmailAndPassword(this.state.signup_email, this.state.signup_password)
         .then((userCredential) => {
-            // Signed up
-            const user = userCredential.user;
-            
+            var user = userCredential.user;
+
             let payload = {
                 "userID" : user.uid,
-                "userName" : this.state.signup_name,
-                "userImage" : ""
+                "userName": this.state.signup_name,
+                "userImage" : this.getImage()
             }
-            const requestOptions = {
+
+            const requestOptions ={
                 method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload),
-            }
-            fetch("http://facebookaws-1465022890.ap-southeast-1.elb.amazonaws.com/api/userService/save", requestOptions)
-            .then(respone => respone.json())
+                headers: { 'Content-Type': 'application/json' },
+                body : JSON.stringify(payload),
+            };
+
+            fetch("http://localhost:8080/api/userService/save",requestOptions)
+            .then(response => response.json())
             .then(data => {
                 localStorage.setItem("user",JSON.stringify(data));
                 window.location.reload();
-                
             })
-            .catch(error=>{
-                
+            .catch(error =>{
+
             })
+            // ...
         })
         .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode);
-        // ..
-        })
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+        });
     }
-    signIN=()=>{
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, this.state.signin_email, this.state.signin_password)
+
+    signInMethod=()=>{
+        signInWithEmailAndPassword(this.state.signin_email, this.state.signin_password)
         .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        fetch("http://facebookaws-1465022890.ap-southeast-1.elb.amazonaws.com/api/userService/getUserDetails/"+ user.uid)
-            .then(respone => respone.json())
+            // Signed in
+            var user = userCredential.user;
+            fetch("http://localhost:8080/api/getAllUsers/"+user.uid)
+            .then(response => response.json())
             .then(data => {
                 localStorage.setItem("user",JSON.stringify(data));
                 window.location.reload();
             })
-            .catch(error=>{
+            .catch(error =>{
+
             })
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode);
-    });
+            // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        });
     }
+    
     render() { 
         return ( 
         <div className="main__container">
             <Grid className="main__content" container >
                     <Grid item xs={7}>
                         <div className="fblogo">
-                            <img src={facebooksignup} width="300px" />
+                            <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" width="300px" />
                         </div>
-                        <div> 
+                        <div>
                             <h1 className="text">Facebook helps you connect and share with the people in your life.</h1>
                         </div>
                     </Grid>
@@ -108,13 +110,13 @@ class LoginHome extends Component {
                         
                             <div container="login__panel" >
                                 <div>
-                                    <input onChange={(event)=>{this.state.signin_email=event.currentTarget.value}} type="text" className="login__input" placeholder="Email address" />
+                                    <input onChange={(event)=>{this.state.signin_email=event.currentTarget.value}}  type="text" className="login__input" placeholder="Email address" />
                                 </div>
                                 <div>
-                                    <input onChange={(event)=>{this.state.signin_password=event.currentTarget.value}} type="password" className="login__input" placeholder="Password"/>
+                                    <input onChange={(event)=>{this.state.signin_password=event.currentTarget.value}}  type="password" className="login__input" placeholder="Password"/>
                                 </div>
                                 <div>
-                                    <button onClick={this.signIN} className="login__button">Log in</button>
+                                    <button onClick={this.signInMethod} className="login__button">Log in</button>
                                 </div>
                                 <div>
                                     <div className="forget_Text">Forgotten password?</div>
@@ -123,7 +125,7 @@ class LoginHome extends Component {
                                     <div className="dividor"></div>
                                 </div>
                                 <div>
-                                    <button onClick = {this.switchPanel} className="login__createnew">Create New Account</button>
+                                    <button className="login__createnew" onClick={this.switchPanel}>Create New Account</button>
                                 </div>
                             </div>
                             :
@@ -132,16 +134,16 @@ class LoginHome extends Component {
                                     <input onChange={(event)=>{this.state.signup_name=event.currentTarget.value}} type="text" className="login__input" placeholder="Name" />
                                 </div>
                                 <div>
-                                    <input onChange={(event)=>{this.state.signup_email=event.currentTarget.value}} type="text" className="login__input" placeholder="Email address" />
+                                    <input onChange={(event)=>{this.state.signup_email=event.currentTarget.value}}  type="text" className="login__input" placeholder="Email address" />
                                 </div>
                                 <div>
-                                    <input onChange={(event)=>{this.state.signup_password=event.currentTarget.value}} type="password" className="login__input" placeholder="Password"/>
+                                    <input onChange={(event)=>{this.state.signup_password=event.currentTarget.value}}  type="password" className="login__input" placeholder="Password"/>
                                 </div>
                                 <div>
                                     <button onClick={this.signUP} className="login__button">Sign Up</button>
                                 </div>
                                 <div>
-                                    <div onClick = {this.switchPanel} className="forget_Text">Already have account?</div>
+                                    <div onClick={this.switchPanel} className="forget_Text">Already have account?</div>
                                 </div>
                             </div>
                          }

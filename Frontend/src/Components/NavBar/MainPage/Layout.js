@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import "./Mainpage.css";
-import { Grid } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
 import LeftSide from './LeftSidePanel/LeftSide';
 import StatusBar from './StatusBar/StatusBar';
 import UploadSection from './UploadSection/UploadSection';
 import PostContainer from './PostContainer/PostContainer';
-import RightSide from './RighrSidePanel/RightSide';
+import RightSide from './RightSidePanel/RightSide';
+
 
 class Layout extends Component {
     constructor(props) {

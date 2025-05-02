@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import "./UploadSection.css";
-import { Paper, Avatar } from '@material-ui/core';
-import live from "../../../../images/video.png";
-import image from "../../../../images/image.png";
-import feeling from "../../../../images/feelings.png";
-import Dialog from '@material-ui/core/Dialog';
-import {firebase} from "../../../../firebase";
+import { Paper, Avatar } from '@mui/material';
+import live from "../../../../images/images/video.png";
+import image from "../../../../images/images/image.png";
+import feeling from "../../../../images/images/feelings.png";
+import Dialog from '@mui/material/Dialog';
+import { app } from "../../../../firebase";
 import { getImage } from '../../../../GetImage';
 
 
@@ -33,7 +33,7 @@ class UploadSection extends Component {
         if(image==undefined || image==null)
             return;
 
-        var uploadTask = firebase.storage().ref("images").child(this.state.image.name).put(this.state.image);
+        var uploadTask = app.storage().ref("images").child(this.state.image.name).put(this.state.image);
         uploadTask.on(
           "state_changed",
           function (snapshot) {

@@ -1,14 +1,17 @@
 import './App.css';
-import LoginHome from './Component/LoginHome/LoginHome';
-import LayOut from './Component/MainPage/LayOut';
-import NavBar from './Component/NavBar/NavBar';
+import NavBar from './Components/NavBar/NavBar';
+import Layout from './Components/NavBar/MainPage/Layout';
+import LoginHome from './Components/LoginHome/LoginHome';
 
 function App() {
   return (
     <div className="App">
+
       {
-        localStorage.getItem("user") == undefined ? <LoginHome/> : <span><NavBar/> <LayOut/></span>
+        localStorage.getItem("user")==undefined ? <LoginHome /> :  <span><NavBar /> <Layout /></span>
       }
+       
+        
     </div>
   );
 }

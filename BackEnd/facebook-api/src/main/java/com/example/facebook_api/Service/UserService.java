@@ -1,11 +1,13 @@
 package com.example.facebook_api.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.example.facebook_api.Entity.User;
 import com.example.facebook_api.Repository.UserRepository;
@@ -16,7 +18,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/save")
+    
     public User submitMetaDataOfUser(User user){
 		Date date = new Date();
 		long time = date.getTime();
@@ -24,16 +26,23 @@ public class UserService {
 		
         user.setUserID(UUID.randomUUID());
 		user.setActive(true);
-		user.setJoiningDate(joiningDate);
+		user.setJoiningDate(dateTime);
 		
         return userRepository.save(user);
     }
 
     public ArrayList<User> retrieveAllUserDetails(){
+
         return userRepository.findAll();
     }
 
     public User getUserData(UUID userID) {
-        return userRepository.findAllByUserId();
+        return userRepository.findAllByUserID(userID);
+    }
+
+    public ArrayList<User> deleteUser(UUID userID){
+        userRepository.deletebyID(userID);
+        ArrayList<User> result =  retrieveAllUserDetails();
+        return result;
     }
 }
