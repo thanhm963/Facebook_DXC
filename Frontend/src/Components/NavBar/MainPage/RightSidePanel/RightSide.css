@@ -1,0 +1,14 @@
+.rightside__container{
+    margin-left: 100px;
+}
+.rightside__header{
+    margin-top: 20px;
+    display: flex;
+    color: #6B6D72;
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 12px;
+}
+.rightside__content{
+    
+}

@@ -23,8 +23,7 @@ public class UserService {
 		Date date = new Date();
 		long time = date.getTime();
 		Timestamp dateTime=new Timestamp(time);
-		
-        user.setUserID(UUID.randomUUID());
+
 		user.setActive(true);
 		user.setJoiningDate(dateTime);
 		
@@ -36,12 +35,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserData(UUID userID) {
+    public User getUserData(String userID) {
         return userRepository.findAllByUserID(userID);
     }
 
-    public ArrayList<User> deleteUser(UUID userID){
-        userRepository.deletebyID(userID);
+    public ArrayList<User> deleteUser(String userID){
+        userRepository.deleteById(userID);
         ArrayList<User> result =  retrieveAllUserDetails();
         return result;
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.facebook_api.Entity.Post;
 import com.example.facebook_api.Entity.User;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/userService")
 public class UserController {
@@ -27,16 +27,16 @@ public class UserController {
     public ArrayList<User> getAllUserDetails() {
         ArrayList<User> result = userService.retrieveAllUserDetails();
         return result;
-    }
+    } 
     
     @GetMapping("/getAllUsers/{userID}")
-    public User getUserDetail(@PathVariable("userID") UUID userID){
+    public User getUserDetail(@PathVariable("userID") String userID){
 
         return userService.getUserData(userID);
     }
 
     @DeleteMapping("/delete/{userID}")
-    public ArrayList<User> deleteUser(@PathVariable("userID") UUID userID){
+    public ArrayList<User> deleteUser(@PathVariable("userID") String userID){
         ArrayList<User> result = userService.deleteUser(userID);
         return result;
     }

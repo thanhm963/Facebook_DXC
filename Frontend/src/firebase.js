@@ -1,11 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getStorage } from "firebase/storage";
+// import { getFirestore } from "firebase/firestore";
+// import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAfAbjSC2irgH7YgKbY1MYJfVEkkrwgp1U",
+  apiKey: "AIzaSyAf4bjSC2irgH7YgKbY1MYJfVEkkrwgp1U",
   authDomain: "facebook-clone-1e143.firebaseapp.com",
   projectId: "facebook-clone-1e143",
   storageBucket: "facebook-clone-1e143.appspot.com",
@@ -14,11 +15,9 @@ const firebaseConfig = {
   measurementId: "G-KR2GHJ80Q1"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
-// Optionally initialize services
-const auth = getAuth(app);
-const db = getFirestore(app);
+export { app, storage };
 
-export { app, auth, db };
+

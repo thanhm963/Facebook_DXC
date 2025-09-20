@@ -6,11 +6,11 @@ import java.util.UUID;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table("User")
+@Table
 public class User {
     
     @PrimaryKey
-    private UUID userID;
+    private String userID;
 
     private String userName;
     private String userImage;
@@ -20,7 +20,7 @@ public class User {
     public User() {
         super();
     }
-    public User(UUID userID, String userName, String userImage, boolean active, Timestamp joiningDate) {
+    public User(String userID, String userName, String userImage, boolean active, Timestamp joiningDate) {
         super();
         this.userID = userID;
         this.userName = userName;
@@ -28,7 +28,7 @@ public class User {
         this.active = active;
         this.joiningDate = joiningDate;
     }
-    public UUID getUserID() {
+    public String getUserID() {
         return userID;
     }
     public String getUserName() {
@@ -43,7 +43,7 @@ public class User {
     public Timestamp getJoiningDate() {
         return joiningDate;
     }
-    public void setUserID(UUID userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
     public void setUserName(String userName) {

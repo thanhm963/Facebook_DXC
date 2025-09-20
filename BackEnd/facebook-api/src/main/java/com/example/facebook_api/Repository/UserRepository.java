@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserRepository extends CassandraRepository <User, UUID> {
+public interface UserRepository extends CassandraRepository <User, String> {
     User save(User user);
     ArrayList<User> findAll();
-    User findAllByUserID(UUID userID);
-    void deletebyID(UUID userID);
+    User findAllByUserID(String userID);
+    void deleteById(String userID);
 } 

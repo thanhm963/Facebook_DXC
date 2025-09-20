@@ -5,8 +5,9 @@ import live from "../../../../images/images/video.png";
 import image from "../../../../images/images/image.png";
 import feeling from "../../../../images/images/feelings.png";
 import Dialog from '@mui/material/Dialog';
-import { app } from "../../../../firebase";
+import  { app }    from "../../../../firebase";
 import { getImage } from '../../../../GetImage';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 class UploadSection extends Component {
@@ -32,8 +33,10 @@ class UploadSection extends Component {
         const thisContext=this;
         if(image==undefined || image==null)
             return;
-
-        var uploadTask = app.storage().ref("images").child(this.state.image.name).put(this.state.image);
+        
+        const storage = getStorage(app);
+        const storageRef = ref(storage, 'images/' + this.state.image.name);
+        var uploadTask = uploadBytesResumable(storageRef,this.state.image);
         uploadTask.on(
           "state_changed",
           function (snapshot) {

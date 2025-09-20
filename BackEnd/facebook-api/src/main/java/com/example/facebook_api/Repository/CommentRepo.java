@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface CommentRepo extends CassandraRepository<Comment, UUID> {
     Comment save(Comment comment);
-    void deletebyId(UUID commentID);
+    void deleteById(UUID commentID);
 
     @AllowFiltering
     ArrayList<Comment> findAllByPostID(UUID postID);
